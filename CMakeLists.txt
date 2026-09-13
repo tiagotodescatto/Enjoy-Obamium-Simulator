@@ -20,7 +20,7 @@ find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(tinyexr CONFIG REQUIRED)
 
-add_executable (MedievalRPG "main.cpp")
+add_executable (MedievalRPG "main.cpp" "headers/camera.cpp" "headers/shader.cpp" "headers/input.cpp")
 
 target_link_libraries(MedievalRPG PRIVATE fmt::fmt)
 target_link_libraries(MedievalRPG PRIVATE glfw)     

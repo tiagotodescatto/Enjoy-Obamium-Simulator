@@ -3,8 +3,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "headers/shaderclass.h"
-#include "headers/input.h"
+#include "headers/Camera.h"
+#include "headers/Input.h"
+#include "headers/shader.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -79,11 +80,7 @@ unsigned int indices[] = {
 };
 
 // CAMERA
-float yaw = -90.0f;
-float pitch = 0.0f;
-
-float lastX = 1280.0f / 2.0f;
-float lastY = 720.0f / 2.0f;
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
 bool firstMouse = true;
 
@@ -92,18 +89,16 @@ glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 lastPos = glm::vec3(0.0f, 0.0f, 3.0f);
 
 
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn){
-    glm::vec3 direction;
-
-    direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction.y = sin(glm::radians(pitch));
-    direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    cameraFront = glm::normalize(direction);
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    static float lastX = 1280.0f;
+    static float lastY = 720.0f;
+    static bool firstMouse = true;
 
     float xpos = static_cast<float>(xposIn);
     float ypos = static_cast<float>(yposIn);
 
-    if (firstMouse){
+    if (firstMouse) {
         lastX = xpos;
         lastY = ypos;
         firstMouse = false;
@@ -111,20 +106,11 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn){
 
     float xoffset = xpos - lastX;
     float yoffset = lastY - ypos;
-
     lastX = xpos;
     lastY = ypos;
 
-    float sensibility = 0.1f;
-
-    xoffset *= sensibility;
-    yoffset *= sensibility;
-
-    yaw += xoffset;
-    pitch += yoffset;
-
-    if (pitch > 89.0f) pitch = 89.0f;
-    if (pitch < -89.0f) pitch = -89.0f;
+    Camera* cam = static_cast<Camera*>(glfwGetWindowUserPointer(window));
+    if (cam) cam->ProcessMouseMovement(xoffset, yoffset);
 }
 
 
@@ -166,10 +152,12 @@ int main()
 
     // OPENGL SETUP
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetWindowUserPointer(window, &camera);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
     // LOAD HDRI
     const char* filename = R"(assets/NightSkyHDRI007_16K_HDR.exr)";
@@ -280,9 +268,9 @@ int main()
     glEnableVertexAttribArray(1);
 
     // SHADERS
-    Shader shader("shaders/vertexshader.vert", "shaders/fragmentshader.frag");
-    Shader hdrToCubemapShader("shaders/hdr_to_cubemap.vert", "shaders/hdr_to_cubemap.frag");
-    Shader skyboxShader("shaders/skybox.vert", "shaders/skybox.frag");
+    Shader shader("shaders/default/vertexshader.vert", "shaders/default/fragmentshader.frag");
+    Shader hdrToCubemapShader("shaders/hdr_to_cubemap/hdr_to_cubemap.vert", "shaders/hdr_to_cubemap/hdr_to_cubemap.frag");
+    Shader skyboxShader("shaders/skybox/skybox.vert", "shaders/skybox/skybox.frag");
 
     shader.use();
     shader.setVec3("lightDir", glm::normalize(glm::vec3(0.4f, 1.0f, 0.3f)));
@@ -326,6 +314,11 @@ int main()
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
     float rotationAngle = 0.0f;
+    float verticalVelocity = 0.0f;
+    bool isGrounded = true;
+    const float gravity = -9.8f;
+    const float jumpForce = 4.0f;
+    const float groundLevel = 0.0f;
 
     Input input(window);
 
@@ -338,7 +331,24 @@ int main()
         lastFrame = currentFrame;
 
         // INPUT
-        input.windowInput(window, cameraPos, cameraFront, deltaTime);
+        input.windowInput(window, camera, deltaTime);
+
+        // JUMP
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && isGrounded) {
+            verticalVelocity = jumpForce;
+            isGrounded = false;
+        }
+
+        // GRAVITY
+        verticalVelocity += gravity * deltaTime;
+        camera.Position.y += verticalVelocity * deltaTime;
+
+        // Ground Colision
+        if (camera.Position.y <= groundLevel) {
+            camera.Position.y = groundLevel;
+            verticalVelocity = 0.0f;
+            isGrounded = true;
+        }
 
         // ROTATE CUBE
         rotationAngle += 60.0f * deltaTime;
@@ -354,11 +364,8 @@ int main()
         // CAMERA MATRICES
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::rotate(model, glm::radians(rotationAngle), glm::vec3(0.0f, 1.0f, 0.0f));
-        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(60.0f), static_cast<float>(screenWidth) / static_cast<float>(screenHeight), 0.1f, 1000.0f);
-
-        // PROVISORY GROUND COLLISION
-        if (cameraPos.y < 0.0f) cameraPos.y = 0.0f;
 
         // CLEAR SCREEN
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
