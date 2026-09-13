@@ -39,7 +39,6 @@ The project is still in early development, but currently includes:
 * 🧭 World-space camera system
 * 📐 Perspective projection
 * 🗺️ Basic coordinate tracking
-* 📝 Basic on-screen text rendering
 * 🪟 Resizable window
 * ⏱️ Delta-time based movement
 
@@ -115,28 +114,13 @@ The project will grow gradually as I learn more about graphics programming and g
 * [x] Mouse look
 * [x] Delta time
 * [x] Basic lighting
-* [x] Basic text rendering
-
-### ⚔️ Gameplay
-
-* [ ] Player system
-* [ ] Proper collision detection
-* [ ] Gravity
-* [ ] Jumping
-* [ ] Health system
-* [ ] Combat
-* [ ] Weapons
-* [ ] NPCs
-* [ ] Enemies
-* [ ] Inventory
 
 ### 🌲 World
 
 * [ ] Terrain
 * [ ] Buildings
 * [ ] Trees and vegetation
-* [ ] Day/night cycle
-* [ ] Skybox
+* [x] Skybox
 * [ ] Weather
 * [ ] Lighting improvements
 
@@ -149,22 +133,6 @@ The project will grow gradually as I learn more about graphics programming and g
 * [ ] Particle effects
 * [ ] Better lighting
 * [ ] Post-processing
-
----
-
-## 🎯 Project Philosophy
-
-This project is intentionally being developed **step by step**.
-
-Instead of immediately using a complete game engine, I want to understand what is happening underneath:
-
-> **How does a camera work?**
-> **How does a vertex reach the GPU?**
-> **How do shaders transform geometry?**
-> **How does a game loop actually work?**
-> **How can a collection of systems become a game?**
-
-Every system is an opportunity to learn something new.
 
 ---
 
@@ -207,24 +175,11 @@ Then build it using your preferred C++ build system or IDE.
 | `A`     | Move left     |
 | `S`     | Move backward |
 | `D`     | Move right    |
+| `Space` | Jump          |
 | `Mouse` | Look around   |
 | `ESC`   | Exit          |
 
 > More controls will be added as gameplay systems are implemented.
-
----
-
-## 📚 Inspiration
-
-The main inspiration comes from the feeling of exploring a medieval fantasy world rather than from any specific mechanic.
-
-### 🏰 The Elder Scrolls IV: Oblivion
-
-The colorful medieval fantasy atmosphere, towns, wilderness, and sense of adventure.
-
-### 🐉 The Elder Scrolls V: Skyrim
-
-The exploration, first-person perspective, environments, combat, and overall feeling of traveling through a large fantasy world.
 
 ---
 
