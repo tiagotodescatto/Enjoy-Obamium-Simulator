@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿// Made with love, nah im joking this was made with just wrath
+#include <iostream>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -155,9 +156,9 @@ int main()
     glfwSetWindowUserPointer(window, &camera);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
     // LOAD HDRI
     const char* filename = R"(assets/NightSkyHDRI007_16K_HDR.exr)";
@@ -167,6 +168,7 @@ int main()
     const char* err = nullptr;
     int ret = LoadEXR(&rgba, &width, &height, filename, &err);
 
+#ifdef DEBUG
     if (ret != TINYEXR_SUCCESS) {
         std::cerr << "Failed to load EXR: " << (err ? err : "unknown error") << std::endl;
         if (err) FreeEXRErrorMessage(err);
@@ -175,11 +177,11 @@ int main()
         return -4;
     }
 
-    /*
+
     std::cout << "Loaded EXR successfully" << std::endl;
     std::cout << "Height: " << height << std::endl;
     std::cout << "Width: " << width << std::endl;
-    */
+#endif
 
     // HDR TEXTURE
     unsigned int hdrTextureID;
@@ -395,8 +397,6 @@ int main()
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
 
-        shader.setVec3("lightDir", glm::normalize(glm::vec3(0.4f, 1.0f, 0.3f)));
-
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_CUBE_MAP, envCubemap);
         shader.setInt("skybox", 1);
@@ -412,7 +412,7 @@ int main()
         glfwPollEvents();
     }
 
-    // CLEANUP
+    // Cleanup because why not
     glDeleteTextures(1, &hdrTextureID);
     glDeleteTextures(1, &envCubemap);
     glDeleteRenderbuffers(1, &captureRBO);
