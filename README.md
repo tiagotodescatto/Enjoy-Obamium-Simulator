@@ -1,6 +1,7 @@
-# ⚔️ Medieval RPG — OpenGL
+# 🌌 Obamium: A Cosmic Experience
 
-> **A very simple medieval RPG inspired by *The Elder Scrolls IV: Oblivion* and *The Elder Scrolls V: Skyrim*, built from scratch with C++ and OpenGL.**
+> A completely unnecessary 3D experience featuring the universe, a skybox,
+> and a rotating model of Obamium.
 
 ![C++](https://img.shields.io/badge/C%2B%2B-26-blue?style=for-the-badge\&logo=cplusplus)
 ![OpenGL](https://img.shields.io/badge/OpenGL-4.6-grey?style=for-the-badge\&logo=opengl)
@@ -9,191 +10,91 @@
 
 ---
 
-## 🏰 About the Project
+## 🌠 About
 
-**Medieval RPG** is a small personal game project created to learn and experiment with **C++ game development and modern OpenGL**.
+This project is a small 3D OpenGL experience focused on one thing:
 
-The project is heavily inspired by the atmosphere and exploration of classic Bethesda RPGs, especially:
+**appreciating the universe while watching Obamium slowly rotate in space.**
 
-* 🧝 **The Elder Scrolls III: Morrowind**
-* ⚔️ **The Elder Scrolls IV: Oblivion**
-* 🐉 **The Elder Scrolls V: Skyrim**
+There are no quests.
 
-The goal isn't to recreate either game, but to build a small medieval world while learning how the technology behind a game engine actually works.
+There are no enemies.
 
-> **No game engine. No Unity. No Unreal. Just C++, OpenGL, mathematics, and a lot of experimentation.**
+There is no inventory.
 
----
+There is only **Obamium**.
 
-## 🎮 Current Features
+The project started as an experiment with OpenGL rendering, HDRI skyboxes,
+shaders and 3D models, eventually evolving into something much more
+important.
 
-The project is still in early development, but currently includes:
+## ✨ Features
 
-* 🖥️ OpenGL 4.6 rendering
-* 🎥 First-person camera
-* 🖱️ Mouse-controlled camera rotation
-* ⌨️ Keyboard movement
-* 🧊 3D model rendering
-* 💡 Basic lighting
-* 🧭 World-space camera system
-* 📐 Perspective projection
-* 🗺️ Basic coordinate tracking
-* 🪟 Resizable window
-* ⏱️ Delta-time based movement
-
----
+- 🌌 3D universe skybox
+- ⭐ HDRI-based environment
+- 🪐 3D Obamium model
+- 🔄 Slowly rotating Obamium
+- 🎥 3D camera
+- 💡 Real-time lighting
+- 🎨 OpenGL rendering
+- 🖥️ Real-time 3D graphics
 
 ## 🛠️ Built With
 
-| Technology        | Purpose                         |
-| ----------------- | ------------------------------- |
-| **C++**           | Main programming language       |
-| **OpenGL 4.6**    | Graphics rendering              |
-| **GLFW**          | Window creation and input       |
-| **GLAD**          | OpenGL function loading         |
-| **GLM**           | Mathematics and transformations |
+- **C++**
+- **OpenGL 4.6**
+- **GLFW**
+- **GLAD**
+- **GLM**
+- **fmt**
+- **TinyEXR**
+- **CMake**
+- **vcpkg**
 
----
+## 🎮 What Do You Do?
 
-## 🧠 What I'm Learning
+You look at the universe.
 
-This project is primarily a **learning project**, so I'm focusing on understanding the fundamentals rather than relying on a game engine.
+You look at Obamium.
 
-Some of the concepts I'm studying through the project:
+Obamium rotates.
 
-```text
-C++
- ├── Classes & Object-Oriented Programming
- ├── Memory management
- ├── Program architecture
- └── Game loops
+That's it.
 
-OpenGL
- ├── VAOs
- ├── VBOs
- ├── EBOs
- ├── Shaders
- ├── Vertex attributes
- ├── Coordinate systems
- ├── Transformations
- ├── Depth testing
- └── Rendering pipeline
+And honestly, that's enough. *(chatgpt ahh quote 😭)*
 
-Game Development
- ├── First-person cameras
- ├── Input systems
- ├── Delta time
- ├── Collision
- ├── World coordinates
- └── UI / HUD
-```
+## 🌌 The Experience
 
----
+The main objective is to create a simple atmospheric environment where the
+player can appreciate the scale of the universe while observing the majestic
+rotation of a highly valuable substance.
+
+### The Obamium
+
+The Obamium model is placed at the center of the scene and continuously
+rotates.
+
+It does not serve any gameplay purpose.
+
+It does not need one.
 
 ## 📸 Screenshots
 
-> Screenshots will be added as the project develops.
-
-<p align="center">
-  <img src="screenshots/gameplay.png" width="800">
-</p>
-
----
-
-## 🗺️ Roadmap
-
-The project will grow gradually as I learn more about graphics programming and game development.
-
-### 🌱 Foundation
-
-* [x] OpenGL window
-* [x] Basic rendering
-* [x] Perspective camera
-* [x] WASD movement
-* [x] Mouse look
-* [x] Delta time
-* [x] Basic lighting
-
-### 🌲 World
-
-* [ ] Terrain
-* [ ] Buildings
-* [ ] Trees and vegetation
-* [x] Skybox
-* [ ] Weather
-* [ ] Lighting improvements
-
-### ✨ Graphics
-
-* [ ] Proper 3D models
-* [ ] Texture loading
-* [ ] Normal mapping
-* [ ] Shadow mapping
-* [ ] Particle effects
-* [ ] Better lighting
-* [ ] Post-processing
-
----
-
-## 🚧 Development Status
-
-**Early Development / Learning Project**
-
-The project will evolve as I learn more about:
-
-**C++ → OpenGL → Graphics Programming → Game Architecture → Game Development**
-
----
+<img width="739" height="415" alt="images" src="https://github.com/user-attachments/assets/1e4868f1-9f79-4cdc-8a4d-88f441d316b1" />
 
 ## 🚀 Building
 
 ### Requirements
 
-* C++ compiler with C++17 support
-* OpenGL 4.6 compatible GPU
-* GLFW
-* GLAD
-* GLM
+- Windows
+- Visual Studio 2022 or newer
+- CMake
+- vcpkg
+- OpenGL 4.6 compatible GPU
+
+### Build
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Medieval-RPG.git
-cd Medieval-RPG
-```
-
-Then build it using your preferred C++ build system or IDE.
-
----
-
-## 🎮 Controls
-
-| Key     | Action        |
-| ------- | ------------- |
-| `W`     | Move forward  |
-| `A`     | Move left     |
-| `S`     | Move backward |
-| `D`     | Move right    |
-| `Space` | Jump          |
-| `Mouse` | Look around   |
-| `ESC`   | Exit          |
-
-> More controls will be added as gameplay systems are implemented.
-
----
-
-## 👨‍💻 Author
-
-**Tiago Todescatto**
-
-A 16 year-old student learning **C++, OpenGL, computer graphics, and game development** by building this project from the ground up.
-
----
-
-<p align="center">
-
-### ⚔️ Built with C++, OpenGL & curiosity.
-
-**One system at a time.**
-
-</p>
+git clone <your-repository-url>
