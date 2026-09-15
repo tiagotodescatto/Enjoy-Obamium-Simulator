@@ -1,0 +1,11 @@
+Model Information:
+* title:	Obamium
+* source:	https://sketchfab.com/3d-models/obamium-96b05c62bde941e98e47417741353450
+* author:	sm_sahil (https://sketchfab.com/sm_sahil)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Obamium" (https://sketchfab.com/3d-models/obamium-96b05c62bde941e98e47417741353450) by sm_sahil (https://sketchfab.com/sm_sahil) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

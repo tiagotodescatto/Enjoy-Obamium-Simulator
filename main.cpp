@@ -7,6 +7,7 @@
 #include "headers/Camera.h"
 #include "headers/Input.h"
 #include "headers/shader.h"
+#include "headers/Model.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -273,10 +274,17 @@ int main()
     Shader shader("shaders/default/vertexshader.vert", "shaders/default/fragmentshader.frag");
     Shader hdrToCubemapShader("shaders/hdr_to_cubemap/hdr_to_cubemap.vert", "shaders/hdr_to_cubemap/hdr_to_cubemap.frag");
     Shader skyboxShader("shaders/skybox/skybox.vert", "shaders/skybox/skybox.frag");
+    Shader modelShader("shaders/model/model.vert", "shaders/model/model.frag");
 
     shader.use();
     shader.setVec3("lightDir", glm::normalize(glm::vec3(0.4f, 1.0f, 0.3f)));
     shader.setInt("skybox", 1);
+
+    // MODELS
+    Model obamiumModel("assets/models/obamium/scene.gltf");
+
+    modelShader.use();
+    modelShader.setVec3("lightDir", glm::normalize(glm::vec3(0.4f, 1.0f, 0.3f)));
 
     // HDR -> CUBEMAP SHADER
     hdrToCubemapShader.use();
@@ -365,7 +373,9 @@ int main()
 
         // CAMERA MATRICES
         glm::mat4 model = glm::mat4(1.0f);
+        // model = glm::scale(model, glm::vec3(0.01f));
         model = glm::rotate(model, glm::radians(rotationAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(0.0f, -0.75f, 0.0f));
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(60.0f), static_cast<float>(screenWidth) / static_cast<float>(screenHeight), 0.1f, 1000.0f);
 
@@ -386,23 +396,16 @@ int main()
         glBindVertexArray(vao);
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
 
-
-        // CUBE
+        // OBAMIUM
         glDepthMask(GL_TRUE);
         glDepthFunc(GL_LESS);
 
-        shader.use();
+        modelShader.use();
+        modelShader.setMat4("model", model);
+        modelShader.setMat4("view", view);
+        modelShader.setMat4("projection", projection);
 
-        shader.setMat4("model", model);
-        shader.setMat4("view", view);
-        shader.setMat4("projection", projection);
-
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, envCubemap);
-        shader.setInt("skybox", 1);
-
-        glBindVertexArray(vao);
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+        obamiumModel.Draw(modelShader);
 
         // DEBUG COORDINATES
         coordinates_callback();
