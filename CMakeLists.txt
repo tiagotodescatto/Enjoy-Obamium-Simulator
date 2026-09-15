@@ -1,7 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.10)
 
 if(MSVC)
-    set_target_properties(EnjoyObamium PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+    set_target_properties(EnjoyObamium PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
 endif()
 
 if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
