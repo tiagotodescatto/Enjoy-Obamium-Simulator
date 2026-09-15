@@ -11,7 +11,11 @@
 ---
 ## 📄 About the game
 
-Enjoy Obamium Simulator is a very simple game made by me (Tiago Todescatto), where you are alone with a spinning 3D model of Obamium in the void, you can walk infitely towards any way! Obamium is not going to go away walking or something like that, you can always come back to him! It is made with pure Opengl and C++!
+Enjoy Obamium Simulator is a very simple game made by me (Tiago Todescatto), where you are alone with a spinning 3D model of Obamium in the void, you can walk infitely towards any way! Obamium is not going to go away walking or something like that, you can always come back to him! It is made with pure OpenGL and C++!
+
+This project took me around 2 weeks to make, including the almost 14 hours that I've spent learning OpenGL with Claude and ChatGPT so I could make this game by myself. Made it in the Visual Studio 2026 with Cmake and vcpkg.
+
+I don't have plans to continue the development of this little game except for some bug fixes. If you are experiencing issues, please make a Pull Request so I can figure a solution out for you!
 
 ---
 
@@ -38,7 +42,7 @@ Enjoy Obamium Simulator is a very simple game made by me (Tiago Todescatto), whe
 
 ### Requirements
 
-- Windows
+- Windows 10 or newer
 - A GPU with support to OpenGL 3.3
 
 ### Build
