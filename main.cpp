@@ -135,7 +135,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Medieval RPG", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Enjoy Obamium", nullptr, nullptr);
 
     if (!window) {
         std::cerr << "Failed to create window" << std::endl;
