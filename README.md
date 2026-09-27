@@ -1,8 +1,5 @@
 # 🌌 Enjoy Obamium Simulator
 
-> A completely unnecessary 3D experience featuring the universe, a skybox,
-> and a rotating model of Obamium.
-
 ![C++](https://img.shields.io/badge/C%2B%2B-26-blue?style=for-the-badge\&logo=cplusplus)
 ![OpenGL](https://img.shields.io/badge/OpenGL-4.6-grey?style=for-the-badge\&logo=opengl)
 ![GLFW](https://img.shields.io/badge/GLFW-Window%20%26%20Input-orange?style=for-the-badge)
@@ -17,37 +14,7 @@ This project took me around 2 weeks to make, including the almost 14 hours that 
 
 I don't have plans to continue the development of this little game except for some bug fixes. If you are experiencing issues, please make a Pull Request so I can figure a solution out for you!
 
----
-
-## 🛠️ Built With
-
-- **C++**
-- **OpenGL 3.3**
-- **GLFW**
-- **GLAD**
-- **GLM**
-- **fmt**
-- **TinyEXR**
-- **CMake**
-- **vcpkg**
-- **love 💖**
-
 ## 📸 Screenshots
 
 <img width="1280" height="720" alt="images" src="https://github.com/user-attachments/assets/1e4868f1-9f79-4cdc-8a4d-88f441d316b1" />
 <img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/5115e2f6-0a62-4934-a456-3b9b7375a144" />
-
-
-## 🚀 Building
-
-### Requirements
-
-- Windows 10 or newer
-- A GPU with support to OpenGL 3.3
-
-### Build
-
-Clone the repository:
-
-```bash
-git clone <your-repository-url>
