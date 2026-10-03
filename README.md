@@ -6,7 +6,7 @@
 ![GLM](https://img.shields.io/badge/GLM-Math-green?style=for-the-badge)
 
 ---
-## 📄 About the game
+## 📄 About
 
 Enjoy Obamium Simulator is a very simple game made by me (Tiago Todescatto), where you are alone with a spinning 3D model of Obamium in the void, you can walk infitely towards any way! Obamium is not going to go away walking or something like that, you can always come back to him! It is made with pure OpenGL and C++!
 
